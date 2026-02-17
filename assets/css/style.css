@@ -1,10 +1,10 @@
 :root {
-  --cream: #fff7cd;
-  --peach: #fdc3a1;
-  --coral: #fb9b8f;
-  --pink: #ff5779;
-  --light: #ffffff;
-  --dark: #1a1a1a;
+  --dark: #0D1B2A;
+  --deep: #1B263B;
+  --muted: #415A77;
+  --light-slate: #778DA9;
+  --cream: #E0E1DD;
+  --white: #FFFFFF;
 }
 
 /* Reset */
@@ -12,12 +12,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   background: var(--cream);
   color: var(--dark);
+  line-height: 1.6;
   scroll-behavior: smooth;
 }
 
@@ -26,16 +27,22 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
-  background: var(--peach);
+  padding: 15px 50px;
+  background: var(--white);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: background 0.3s;
+}
+
+nav.scrolled {
+  background: var(--deep);
 }
 
 nav .logo {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 28px;
   color: var(--dark);
 }
 
@@ -55,41 +62,59 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: var(--pink);
+  color: var(--muted);
+}
+
+/* Burger menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background: var(--dark);
+  margin: 4px;
 }
 
 /* Hero Section */
 .hero {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(135deg, var(--peach), var(--pink));
-  color: var(--light);
+  background: linear-gradient(135deg, var(--deep), var(--muted));
+  color: var(--white);
+  padding: 0 20px;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
 .hero p {
-  font-size: 20px;
+  font-size: 1.2rem;
   margin-bottom: 30px;
+  color: var(--light-slate);
 }
 
 .btn {
-  padding: 10px 25px;
-  background: var(--coral);
-  color: var(--light);
+  padding: 12px 28px;
+  background: var(--muted);
+  color: var(--white);
   text-decoration: none;
   border-radius: 5px;
+  font-weight: 600;
   transition: 0.3s;
 }
 
 .btn:hover {
-  background: var(--pink);
+  background: var(--dark);
+  transform: translateY(-2px);
 }
 
 /* Sections */
@@ -97,30 +122,50 @@ section {
   padding: 80px 50px;
 }
 
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
 h2 {
   text-align: center;
   margin-bottom: 40px;
-  color: var(--coral);
+  color: var(--dark);
+  font-size: 2.5rem;
+}
+
+/* About Section */
+#about .container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+#about p {
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 /* Projects */
+#projects .container {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
 .project-card {
-  display: flex;
-  flex-wrap: wrap;
-  background: var(--light);
+  background: var(--white);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
 .project-card img {
-  width: 300px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -129,67 +174,86 @@ h2 {
 }
 
 .project-info h3 {
-  color: var(--pink);
+  color: var(--deep);
   margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.project-info p {
+  color: var(--light-slate);
+  font-size: 1rem;
+  margin-bottom: 15px;
 }
 
 .project-info a {
-  color: var(--coral);
-  text-decoration: underline;
-}
-
-/* Contact */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input, textarea {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid var(--dark);
-  resize: none;
-}
-
-button {
-  padding: 12px;
-  background: var(--pink);
-  color: var(--light);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
+  color: var(--muted);
+  font-weight: 600;
+  text-decoration: none;
   transition: 0.3s;
 }
 
-button:hover {
-  background: var(--coral);
+.project-info a:hover {
+  color: var(--dark);
 }
 
 /* Footer */
 footer {
   text-align: center;
-  padding: 20px;
-  background: var(--peach);
-  color: var(--dark);
+  padding: 25px 50px;
+  background: var(--deep);
+  color: var(--cream);
+  font-weight: 500;
+}
+
+/* HERO PARALLAX already works via JS modifying background-position */
+
+/* SCROLL ANIMATIONS */
+section, .project-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+
+section.animate, .project-card.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* BUTTON HOVER / CARD ANIMATION */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* NAVBAR SCROLL EFFECT */
+nav.scrolled {
+  background: var(--deep);
+  transition: background 0.3s;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .project-card {
-    flex-direction: column;
-    align-items: center;
-  }
-
   nav ul {
     display: none;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     position: absolute;
-    top: 80px;
+    top: 70px;
     right: 50px;
-    background: var(--peach);
+    background: var(--white);
     padding: 20px;
     border-radius: 10px;
   }
@@ -199,18 +263,14 @@ footer {
   }
 
   .burger {
-    display: block;
-    cursor: pointer;
+    display: flex;
   }
 
-  .burger div {
-    width: 25px;
-    height: 3px;
-    background: var(--dark);
-    margin: 5px;
+  .hero h1 {
+    font-size: 2.2rem;
   }
-}
 
-@media (min-width: 769px) {
-  .burger { display: none; }
+  .hero p {
+    font-size: 1rem;
+  }
 }
